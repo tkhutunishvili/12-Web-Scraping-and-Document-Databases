@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1 style="font-family: sylfaen; color: blue">Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+
+    </div>
+
+        <!-- News Section -->
+        <div class="container">
+            <h3 style="font-family: sylfaen; color: blue">Latest Mars News</h3>
+            <h6 style="font-family: sylfaen">{{ dict_mars.news_title }}</h6>
+            <p style="font-family: sylfaen">{{ dict_mars.news_p }}</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h3 style="font-family: sylfaen; color: blue">Featured Mars Image</h3>
+                    <img src="{{ dict_mars.featured_image_url }}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body text-white bg-dark">
+                            <h5 class="card-title" style="font-family: sylfaen; color: blue">Current Weather on Mars</h5>
+                            <p class="card-text" style="font-family: sylfaen;">{{ dict_mars.mars_weather }}</p>
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <h3 style="font-family: sylfaen; color: blue">Mars Facts</h3>
+                    <div style="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65px; font-family: sylfaen;">
+                        {{ dict_mars.mars_facts|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+</br>
+            <div class="col-md-6" style="border: 0px">
+                <div class="panel panel-default" style="border: 0px">
+                    <div class="panel-heading" style="border: 0px; background-color: white">
+                        <h2 class="panel-title" style="border: 0px; text-align: center; font-family: sylfaen; color: blue">Mars Hemispheres</h2>
+                    </div>
+
+                    <div class="panel-body" style="border: 0px; font-family: sylfaen;">
+                    {% for item in dict_mars.hemisphere_image_urls %}
+                        <div class="thumbnail" style="width: 50%; float:left; border: 0px">
+                            <img src= {{ item.img_url }} alt="Hemisphere1">
+                            <div class="caption" style="border: 0px">
+                                <h4 style="font-family: sylfaen; color: blue">{{ item.title }}</h4>
+                            </div>
+                        </div>
+                {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+
+</div>
+</body>
+
+</html>
+
